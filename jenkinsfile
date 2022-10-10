@@ -1,0 +1,27 @@
+pipeline {
+    agent { label 'JDK-11'}
+    stages {
+        stage ('source code  from git remote repository') {
+            steps {
+                git url: 'https://github.com/ksumankumar/openmrs-core-release.git',
+                 branch: 'Release_declartive'
+            }
+        }
+        stage('To build maven package') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage("archive artifact") {
+            steps { 
+                archiveArtifacts artifacts: '**/target/*.jar'
+            }
+        }
+       
+    }
+}    
+         
+           
+         
+        
+    
