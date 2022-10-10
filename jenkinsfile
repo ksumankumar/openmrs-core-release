@@ -9,7 +9,7 @@ pipeline {
         }
         stage('To build maven package') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn package'
             }
         }
         stage("archive artifact") {
